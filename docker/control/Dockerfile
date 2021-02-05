@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:stretch
 MAINTAINER jake@apache.org
 
 ENV LEIN_ROOT true
