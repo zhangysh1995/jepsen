@@ -1127,6 +1127,7 @@
   Generator
   (op [_ test ctx]
     (when (seq gens)
+      ; returns a sequence of `gens`. e.g. (seq [1 2]) ;;=> (1,2)
       (if-let [[op gen'] (op (nth gens i) test ctx)]
         ; Good, we have an op
         [op (Mix. (rand-int (count gens)) (assoc gens i gen'))]

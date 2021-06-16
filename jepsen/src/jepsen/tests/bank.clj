@@ -28,13 +28,13 @@
   [test _]
   {:type  :invoke
    :f     :transfer
-   :value {:from    (rand-nth (:accounts test))
-           :to      (rand-nth (:accounts test))
-           :amount  (+ 1 (rand-int (:max-transfer test)))}})
+   :value {:from    (rand-nth (:accounts test))             ; randomly chose an account to deduct money
+           :to      (rand-nth (:accounts test))             ; randomly chose an account to save money
+           :amount  (+ 1 (rand-int (:max-transfer test)))}}); amount to be transferred, `1~5`
 
 (def diff-transfer
   "Transfers only between different accounts."
-  (gen/filter (fn [op] (not= (-> op :value :from)
+  (gen/filter (fn [op] (not= (-> op :value :from)           ; two accounts must not be the same
                              (-> op :value :to)))
               transfer))
 
@@ -176,6 +176,12 @@
               perf/plot!)
           {:valid? true})))))
 
+;; entrance function for a test
+; default:
+; -  generate a history which transfers money between 8 accounts and also reads
+; -  each account has 100 at start
+; -  each time transfers 1~5 between two different accounts
+; -  transfer and read are mixed
 (defn test
   "A partial test; bundles together some default choices for keys and amounts
   with a generator and checker. Options:
