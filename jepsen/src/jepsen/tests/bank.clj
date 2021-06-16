@@ -179,7 +179,7 @@
 ;; entrance function for a test
 ; default:
 ; -  generate a history which transfers money between 8 accounts and also reads
-; -  each account has 100 at start
+; -  all accounts together have 100 in total at any time
 ; -  each time transfers 1~5 between two different accounts
 ; -  transfer and read are mixed
 (defn test
